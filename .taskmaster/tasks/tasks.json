@@ -278,7 +278,7 @@
           2,
           3
         ],
-        "status": "pending",
+        "status": "done",
         "subtasks": [
           {
             "id": 1,
@@ -286,7 +286,7 @@
             "description": "Set up NextAuth.js 4.x with Prisma database adapter and basic configuration",
             "dependencies": [],
             "details": "Install NextAuth.js 4.x and @next-auth/prisma-adapter packages. Configure NextAuth with Prisma adapter in [...nextauth]/route.ts. Set up environment variables for NEXTAUTH_SECRET and NEXTAUTH_URL. Create basic NextAuth configuration object with Prisma adapter connection.",
-            "status": "pending",
+            "status": "done",
             "testStrategy": ""
           },
           {
@@ -297,7 +297,7 @@
               "4.1"
             ],
             "details": "Configure CredentialsProvider in NextAuth options. Implement email/password validation logic with bcrypt for password hashing. Create user lookup and verification functions. Set up proper error handling for invalid credentials and account verification.",
-            "status": "pending",
+            "status": "done",
             "testStrategy": ""
           },
           {
@@ -308,7 +308,7 @@
               "4.2"
             ],
             "details": "Configure JWT strategy in NextAuth options. Set up session callback to include user role and ID in session object. Configure token callback for JWT payload customization. Implement session persistence and refresh logic with proper expiration handling.",
-            "status": "pending",
+            "status": "done",
             "testStrategy": ""
           },
           {
@@ -319,7 +319,7 @@
               "4.3"
             ],
             "details": "Create app/api/auth/[...nextauth]/route.ts with NextAuth handler. Implement authentication middleware using NextAuth's middleware function. Configure matcher patterns for protected routes. Set up redirect logic for authenticated and unauthenticated users.",
-            "status": "pending",
+            "status": "done",
             "testStrategy": ""
           },
           {
@@ -330,7 +330,7 @@
               "4.4"
             ],
             "details": "Create registration API route in app/api/auth/register/route.ts. Build login and registration forms using shadcn/ui components with react-hook-form validation. Implement user creation logic with password hashing. Add form validation for email format, password strength, and duplicate email checking.",
-            "status": "pending",
+            "status": "done",
             "testStrategy": ""
           },
           {
@@ -341,7 +341,7 @@
               "4.5"
             ],
             "details": "Install and configure Resend for email delivery. Create email verification API routes. Design and implement verification email templates. Create email verification page and token validation logic. Add email verification status to user model and enforce verification requirements.",
-            "status": "pending",
+            "status": "done",
             "testStrategy": ""
           },
           {
@@ -352,7 +352,7 @@
               "4.6"
             ],
             "details": "Create password reset request API route generating secure tokens. Implement password reset email templates with Resend. Build password reset form with token validation. Create secure token storage and expiration logic. Add password update functionality with proper security validation.",
-            "status": "pending",
+            "status": "done",
             "testStrategy": ""
           },
           {
@@ -363,7 +363,7 @@
               "4.7"
             ],
             "details": "Add role field to user model (customer, restaurant_owner). Implement role-based middleware for route protection. Create guest session handling for unauthenticated users. Set up role-specific redirects and access controls. Implement guest checkout session persistence and conversion to registered users.",
-            "status": "pending",
+            "status": "done",
             "testStrategy": ""
           }
         ]
@@ -1120,7 +1120,7 @@
     ],
     "metadata": {
       "created": "2025-09-02T07:10:40.007Z",
-      "updated": "2025-09-02T21:49:45.047Z",
+      "updated": "2025-09-02T21:53:34.461Z",
       "description": "Tasks for master context"
     }
   }
