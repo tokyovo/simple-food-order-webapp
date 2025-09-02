@@ -1,0 +1,117 @@
+{
+	"meta": {
+		"generatedAt": "2025-09-02T07:16:35.354Z",
+		"tasksAnalyzed": 13,
+		"totalTasks": 13,
+		"analysisCount": 13,
+		"thresholdScore": 5,
+		"projectName": "Taskmaster",
+		"usedResearch": true
+	},
+	"complexityAnalysis": [
+		{
+			"taskId": 1,
+			"taskTitle": "Setup Docker Development Environment",
+			"complexityScore": 7,
+			"recommendedSubtasks": 8,
+			"expansionPrompt": "Break down Docker setup into granular configuration steps: separate Dockerfile stages, individual service configurations, networking setup, volume management, health check implementation, and environment variable configuration. Include specific configuration files and testing steps.",
+			"reasoning": "High complexity due to multi-service Docker orchestration, networking configuration, and production-parity requirements. Current subtasks are good but could be more granular for implementation clarity."
+		},
+		{
+			"taskId": 2,
+			"taskTitle": "Initialize Next.js 14 Project Structure",
+			"complexityScore": 5,
+			"recommendedSubtasks": 6,
+			"expansionPrompt": "Expand into specific installation steps, configuration file creation, TypeScript setup, ESLint/Prettier configuration, directory structure creation, and initial component scaffolding. Include package.json script configuration and development server setup.",
+			"reasoning": "Moderate complexity involving multiple tool configurations and project scaffolding. Current subtasks cover main areas but could include more specific configuration steps."
+		},
+		{
+			"taskId": 3,
+			"taskTitle": "Configure Database with Prisma ORM",
+			"complexityScore": 8,
+			"recommendedSubtasks": 7,
+			"expansionPrompt": "Detail schema design for each model, migration strategy, connection pooling configuration, Prisma Client setup, seed data structure, NextAuth adapter integration, and Docker database initialization. Include specific field definitions and relationship constraints.",
+			"reasoning": "High complexity due to comprehensive schema design, NextAuth integration requirements, Docker networking, and data seeding. Current subtasks are well-structured but could include more specific implementation details."
+		},
+		{
+			"taskId": 4,
+			"taskTitle": "Implement NextAuth.js Authentication System",
+			"complexityScore": 8,
+			"recommendedSubtasks": 8,
+			"expansionPrompt": "Break down into provider configuration, middleware setup, protected route implementation, role-based access control, email verification flow, password reset implementation, guest session handling, and security configuration. Include specific NextAuth configuration options.",
+			"reasoning": "High complexity involving security considerations, multiple authentication flows, role management, and email integration. Current subtasks are comprehensive but could be more granular for implementation."
+		},
+		{
+			"taskId": 5,
+			"taskTitle": "Create Restaurant Management System",
+			"complexityScore": 7,
+			"recommendedSubtasks": 7,
+			"expansionPrompt": "Expand into specific page implementations, Server Component patterns, data fetching strategies, form validation, image upload handling, admin permission logic, and CRUD operation implementation. Include specific shadcn/ui component usage and Server Action patterns.",
+			"reasoning": "High complexity due to multiple pages, admin functionality, image handling, and complex form interactions. Current subtasks provide good coverage but could include more implementation specifics."
+		},
+		{
+			"taskId": 6,
+			"taskTitle": "Build Menu Management System",
+			"complexityScore": 6,
+			"recommendedSubtasks": 6,
+			"expansionPrompt": "Break down into menu display components, category management, item detail modals, admin CRUD interfaces, search implementation, and filtering logic. Include specific shadcn/ui component configurations and data fetching patterns.",
+			"reasoning": "Moderate-high complexity involving dynamic content, search/filter functionality, and admin interfaces. No existing subtasks indicate need for comprehensive breakdown."
+		},
+		{
+			"taskId": 7,
+			"taskTitle": "Implement Shopping Cart with Zustand",
+			"complexityScore": 6,
+			"recommendedSubtasks": 6,
+			"expansionPrompt": "Detail Zustand store setup, cart actions implementation, persistence logic, SSR hydration handling, cart UI components, and cart validation. Include specific state management patterns and localStorage integration.",
+			"reasoning": "Moderate-high complexity due to state management, persistence challenges, SSR considerations, and complex cart logic. No existing subtasks require full breakdown."
+		},
+		{
+			"taskId": 8,
+			"taskTitle": "Build Checkout and Payment System",
+			"complexityScore": 9,
+			"recommendedSubtasks": 8,
+			"expansionPrompt": "Break down into Stripe setup, payment form creation, order processing API, error handling, confirmation pages, inventory validation, delivery address management, and payment security implementation. Include specific Stripe integration patterns and Server Action implementations.",
+			"reasoning": "Very high complexity involving payment processing, security considerations, multiple validation layers, and complex error handling. Critical business functionality requiring detailed implementation steps."
+		},
+		{
+			"taskId": 9,
+			"taskTitle": "Create Order Management and History",
+			"complexityScore": 6,
+			"recommendedSubtasks": 6,
+			"expansionPrompt": "Expand into order history display, detail page implementation, pagination logic, admin order management, status update functionality, and data streaming. Include specific Server Component patterns and real-time update integration.",
+			"reasoning": "Moderate-high complexity involving multiple pages, real-time updates, admin functionality, and data pagination. No existing subtasks require comprehensive planning."
+		},
+		{
+			"taskId": 10,
+			"taskTitle": "Implement Real-time Features with WebSockets",
+			"complexityScore": 8,
+			"recommendedSubtasks": 7,
+			"expansionPrompt": "Detail WebSocket server setup, Docker service configuration, real-time hooks implementation, push notification setup, connection management, error handling, and service worker integration. Include specific Docker networking and WebSocket patterns.",
+			"reasoning": "High complexity involving real-time infrastructure, Docker networking, service workers, and connection management. Critical for user experience but technically challenging."
+		},
+		{
+			"taskId": 11,
+			"taskTitle": "Configure Playwright MCP Testing Suite",
+			"complexityScore": 7,
+			"recommendedSubtasks": 7,
+			"expansionPrompt": "Break down into Playwright MCP installation, Docker test environment setup, test suite creation for each feature area, CI/CD integration, visual regression testing, accessibility testing, and test reporting. Include specific MCP configuration and Docker networking for tests.",
+			"reasoning": "High complexity due to MCP integration, Docker environment testing, comprehensive test coverage requirements, and CI/CD setup. Specialized testing environment requiring detailed configuration."
+		},
+		{
+			"taskId": 12,
+			"taskTitle": "Implement Search and Filtering System",
+			"complexityScore": 5,
+			"recommendedSubtasks": 5,
+			"expansionPrompt": "Detail search UI implementation, PostgreSQL full-text search setup, filtering component creation, debounced input handling, URL state management, and search performance optimization. Include specific Server Component patterns and database indexing strategies.",
+			"reasoning": "Moderate complexity involving database search, UI components, and state management. Lower priority feature with well-defined scope and existing patterns to follow."
+		},
+		{
+			"taskId": 13,
+			"taskTitle": "Performance Optimization and Production Setup",
+			"complexityScore": 7,
+			"recommendedSubtasks": 8,
+			"expansionPrompt": "Expand into Next.js optimization, Redis caching strategy, bundle analysis, production Docker builds, monitoring setup, logging configuration, health checks, and deployment optimization. Include specific performance metrics and monitoring tools setup.",
+			"reasoning": "High complexity involving multiple optimization strategies, production configuration, monitoring setup, and performance analysis. Requires expertise in Next.js optimization and production deployment."
+		}
+	]
+}

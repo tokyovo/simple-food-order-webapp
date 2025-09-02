@@ -1,0 +1,1127 @@
+{
+  "master": {
+    "tasks": [
+      {
+        "id": 1,
+        "title": "Setup Docker Development Environment",
+        "description": "Create Docker Compose setup with all required services for development environment matching production",
+        "details": "Create docker-compose.yml with Next.js app, PostgreSQL 15+, Redis 7+, and nginx services. Use multi-stage Dockerfile for Next.js with hot reload volume mounts. Include health checks, service dependencies, and proper networking. Configure development environment variables and database initialization scripts. This must be completed first as all development happens in containers.",
+        "testStrategy": "Verify all services start successfully with docker-compose up, test hot reload functionality, confirm database connectivity and Redis cache access",
+        "priority": "high",
+        "dependencies": [],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Create Multi-stage Dockerfile for Next.js",
+            "description": "Build production-ready Dockerfile with development and production stages",
+            "dependencies": [],
+            "details": "Create Dockerfile with multi-stage build: development stage with hot reload support, production stage with optimized build. Include proper layer caching, security best practices, and non-root user configuration. Configure volume mounts for development hot reload.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Configure PostgreSQL Service",
+            "description": "Set up PostgreSQL 15+ container with proper configuration and initialization",
+            "dependencies": [],
+            "details": "Configure PostgreSQL service in docker-compose.yml with version 15+, persistent volume, environment variables, and database initialization scripts. Include health checks and proper resource limits.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Configure Redis Service",
+            "description": "Set up Redis 7+ container for caching and session storage",
+            "dependencies": [],
+            "details": "Configure Redis service in docker-compose.yml with version 7+, persistent volume for development, memory configuration, and health checks. Set up proper networking for application access.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Configure Nginx Reverse Proxy",
+            "description": "Set up nginx service for reverse proxy and static file serving",
+            "dependencies": [],
+            "details": "Configure nginx service with custom nginx.conf for reverse proxy to Next.js app. Include static file serving, proper headers, and SSL termination setup for development. Configure upstream servers and load balancing.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Create Docker Compose Configuration",
+            "description": "Build complete docker-compose.yml orchestrating all services",
+            "dependencies": [
+              "1.1",
+              "1.2",
+              "1.3",
+              "1.4"
+            ],
+            "details": "Create docker-compose.yml with all services, proper networking, service dependencies, volume mounts, and environment variable configuration. Include profiles for different development scenarios.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 6,
+            "title": "Configure Environment Variables and Secrets",
+            "description": "Set up development environment variables and Docker secrets",
+            "dependencies": [],
+            "details": "Create .env.example and .env.local files with all required environment variables. Configure Docker secrets for sensitive data, database credentials, and API keys. Document all environment variables.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 7,
+            "title": "Implement Health Checks and Monitoring",
+            "description": "Add comprehensive health checks for all services",
+            "dependencies": [
+              "1.5"
+            ],
+            "details": "Implement health check endpoints for Next.js app, PostgreSQL connection checks, Redis connectivity tests, and nginx status. Configure Docker health check intervals and failure thresholds.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 8,
+            "title": "Test and Validate Docker Environment",
+            "description": "Verify complete Docker setup with all services running correctly",
+            "dependencies": [
+              "1.5",
+              "1.6",
+              "1.7"
+            ],
+            "details": "Test docker-compose up with all services, verify hot reload functionality, test database connectivity, Redis caching, nginx proxy, and inter-service communication. Document any performance optimizations needed.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "title": "Initialize Next.js 14 Project Structure",
+        "description": "Set up Next.js 14 project with App Router, TypeScript, and essential dependencies",
+        "details": "Initialize Next.js 14 with create-next-app using App Router and TypeScript. Install shadcn/ui CLI and core components (Button, Card, Dialog, Form, Sheet, Progress, Alert, Tabs, Select, Checkbox, Table). Configure Tailwind CSS with shadcn/ui theme. Set up project structure with app/, components/, lib/, types/ directories. Install development dependencies including @types/node, eslint, prettier.",
+        "testStrategy": "Verify Next.js development server runs in Docker container, shadcn/ui components render correctly, TypeScript compilation works without errors",
+        "priority": "high",
+        "dependencies": [
+          1
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Initialize Next.js 14 project with create-next-app",
+            "description": "Create new Next.js 14 project using create-next-app with App Router and TypeScript configuration",
+            "dependencies": [],
+            "details": "Run create-next-app command with --typescript and --app flags. Verify project structure includes app/ directory, TypeScript configuration, and Next.js 14 dependencies in package.json.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Install and configure shadcn/ui CLI with core components",
+            "description": "Set up shadcn/ui CLI and install essential UI components for the application",
+            "dependencies": [
+              "2.1"
+            ],
+            "details": "Install shadcn/ui CLI using npx shadcn-ui@latest init. Configure components.json with Tailwind CSS theme. Install core components: Button, Card, Dialog, Form, Sheet, Progress, Alert, Tabs, Select, Checkbox, Table using shadcn/ui add command.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Configure TypeScript and development tools",
+            "description": "Set up TypeScript configuration, ESLint, and Prettier for code quality",
+            "dependencies": [
+              "2.1"
+            ],
+            "details": "Configure tsconfig.json with strict mode and path mapping. Install and configure ESLint with Next.js rules. Set up Prettier with formatting rules. Install @types/node and other necessary type definitions. Configure VSCode settings for consistent formatting.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Create project directory structure",
+            "description": "Establish organized directory structure for the application",
+            "dependencies": [
+              "2.1"
+            ],
+            "details": "Create app/, components/, lib/, types/ directories with appropriate subdirectories. Set up components/ui/ for shadcn/ui components, lib/utils.ts for utility functions, types/ for TypeScript type definitions. Create initial index files where needed.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Configure package.json scripts and development dependencies",
+            "description": "Set up npm scripts for development workflow and install additional development tools",
+            "dependencies": [
+              "2.2",
+              "2.3"
+            ],
+            "details": "Configure package.json scripts for dev, build, start, lint, and type-check commands. Install additional development dependencies for testing, formatting, and build optimization. Ensure all scripts work correctly with the project structure.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 6,
+            "title": "Verify development server and initial component scaffolding",
+            "description": "Test development server startup and create initial component templates",
+            "dependencies": [
+              "2.4",
+              "2.5"
+            ],
+            "details": "Start Next.js development server and verify hot reload functionality. Create basic layout components using shadcn/ui. Test TypeScript compilation and ESLint/Prettier integration. Verify all installed shadcn/ui components render correctly in a test page.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "title": "Configure Database with Prisma ORM",
+        "description": "Set up Prisma ORM with PostgreSQL schema for the food ordering application",
+        "details": "Install Prisma 5.x and configure with PostgreSQL. Create schema.prisma with User (NextAuth compatible), Restaurant, Category, MenuItem, Order, OrderItem, Payment models. Set up Prisma migrations and seed data. Configure database connection in Docker environment with proper connection pooling. Ensure schema supports NextAuth requirements.",
+        "testStrategy": "Run prisma migrate deploy, verify database schema creation, test seed data insertion, confirm Prisma Client generation works",
+        "priority": "high",
+        "dependencies": [
+          1,
+          2
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Install and Initialize Prisma",
+            "description": "Install Prisma 5.x and initialize with PostgreSQL provider",
+            "dependencies": [],
+            "details": "Run npm install prisma @prisma/client, initialize with npx prisma init, configure .env with DATABASE_URL for PostgreSQL connection, update schema.prisma with PostgreSQL provider and database URL",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Design Core Database Schema Models",
+            "description": "Create User, Restaurant, Category, and MenuItem models with proper relationships",
+            "dependencies": [
+              "3.1"
+            ],
+            "details": "Define User model with NextAuth compatibility (id, name, email, emailVerified, image fields), Restaurant model with owner relationship, Category model with restaurant association, MenuItem model with category and restaurant relationships. Include proper field types, constraints, and indexes",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Design Order and Payment Schema Models",
+            "description": "Create Order, OrderItem, and Payment models with transaction support",
+            "dependencies": [
+              "3.2"
+            ],
+            "details": "Define Order model with user, restaurant, and status fields, OrderItem model with order, menuItem, quantity, and price fields, Payment model with order, amount, status, and provider fields. Include proper decimal types for pricing, enum types for statuses, and foreign key constraints",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Configure NextAuth Prisma Adapter Schema",
+            "description": "Add NextAuth required models and configure adapter integration",
+            "dependencies": [
+              "3.2"
+            ],
+            "details": "Add Account, Session, and VerificationToken models as required by NextAuth Prisma adapter. Configure proper relationships between User and Account/Session models. Ensure all NextAuth field requirements are met with correct types and constraints",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Set Up Database Migrations and Connection Pooling",
+            "description": "Configure Prisma migrations and connection pooling for Docker environment",
+            "dependencies": [
+              "3.3",
+              "3.4"
+            ],
+            "details": "Create initial migration with npx prisma migrate dev, configure connection pooling with pool size limits, set up database URL with connection parameters for Docker networking, configure migrate deploy for production, test migration rollback capabilities",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 6,
+            "title": "Generate Prisma Client and Configure Access",
+            "description": "Generate Prisma Client and set up database access patterns",
+            "dependencies": [
+              "3.5"
+            ],
+            "details": "Run npx prisma generate to create client, create lib/prisma.ts with singleton client instance, configure client for Next.js serverless environment, set up proper connection management and error handling, create database utility functions",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 7,
+            "title": "Create Seed Data and Database Initialization",
+            "description": "Implement comprehensive seed data for development and testing",
+            "dependencies": [
+              "3.6"
+            ],
+            "details": "Create prisma/seed.ts with sample restaurants, categories, menu items, and test users. Include realistic pricing data, restaurant hours, and menu variety. Configure package.json seed script, create Docker init script for database setup, ensure seed data supports all application features and test scenarios",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "title": "Implement NextAuth.js Authentication System",
+        "description": "Set up secure authentication with NextAuth.js supporting multiple providers and guest checkout",
+        "details": "Install NextAuth.js 4.x with Prisma adapter. Configure email/password provider with credential validation. Set up JWT strategy and session management. Create auth API routes in app/api/auth/[...nextauth]/route.ts. Implement registration, login, password reset with Resend for email verification. Add role-based access control for customers and restaurant owners. Support guest checkout sessions.",
+        "testStrategy": "Test user registration, login, logout flows. Verify JWT tokens, session persistence, role-based access, password reset email delivery",
+        "priority": "high",
+        "dependencies": [
+          2,
+          3
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Install and Configure NextAuth.js with Prisma Adapter",
+            "description": "Set up NextAuth.js 4.x with Prisma database adapter and basic configuration",
+            "dependencies": [],
+            "details": "Install NextAuth.js 4.x and @next-auth/prisma-adapter packages. Configure NextAuth with Prisma adapter in [...nextauth]/route.ts. Set up environment variables for NEXTAUTH_SECRET and NEXTAUTH_URL. Create basic NextAuth configuration object with Prisma adapter connection.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Configure Email/Password Authentication Provider",
+            "description": "Set up credentials provider with email/password authentication and validation",
+            "dependencies": [
+              "4.1"
+            ],
+            "details": "Configure CredentialsProvider in NextAuth options. Implement email/password validation logic with bcrypt for password hashing. Create user lookup and verification functions. Set up proper error handling for invalid credentials and account verification.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Implement JWT Strategy and Session Management",
+            "description": "Configure JWT tokens and session handling for secure authentication state",
+            "dependencies": [
+              "4.2"
+            ],
+            "details": "Configure JWT strategy in NextAuth options. Set up session callback to include user role and ID in session object. Configure token callback for JWT payload customization. Implement session persistence and refresh logic with proper expiration handling.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Create Authentication API Routes and Middleware",
+            "description": "Set up NextAuth API routes and authentication middleware for protected pages",
+            "dependencies": [
+              "4.3"
+            ],
+            "details": "Create app/api/auth/[...nextauth]/route.ts with NextAuth handler. Implement authentication middleware using NextAuth's middleware function. Configure matcher patterns for protected routes. Set up redirect logic for authenticated and unauthenticated users.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Implement User Registration and Login Flow",
+            "description": "Create user registration forms and login functionality with proper validation",
+            "dependencies": [
+              "4.4"
+            ],
+            "details": "Create registration API route in app/api/auth/register/route.ts. Build login and registration forms using shadcn/ui components with react-hook-form validation. Implement user creation logic with password hashing. Add form validation for email format, password strength, and duplicate email checking.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 6,
+            "title": "Set Up Email Verification with Resend",
+            "description": "Implement email verification system using Resend for user account activation",
+            "dependencies": [
+              "4.5"
+            ],
+            "details": "Install and configure Resend for email delivery. Create email verification API routes. Design and implement verification email templates. Create email verification page and token validation logic. Add email verification status to user model and enforce verification requirements.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 7,
+            "title": "Implement Password Reset Functionality",
+            "description": "Create secure password reset flow with email-based token verification",
+            "dependencies": [
+              "4.6"
+            ],
+            "details": "Create password reset request API route generating secure tokens. Implement password reset email templates with Resend. Build password reset form with token validation. Create secure token storage and expiration logic. Add password update functionality with proper security validation.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 8,
+            "title": "Implement Role-Based Access Control and Guest Sessions",
+            "description": "Set up RBAC system for customers/restaurant owners and guest checkout support",
+            "dependencies": [
+              "4.7"
+            ],
+            "details": "Add role field to user model (customer, restaurant_owner). Implement role-based middleware for route protection. Create guest session handling for unauthenticated users. Set up role-specific redirects and access controls. Implement guest checkout session persistence and conversion to registered users.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "title": "Create Restaurant Management System",
+        "description": "Implement restaurant listing, details, and management functionality with Next.js App Router",
+        "details": "Create app/restaurants/page.tsx for restaurant listing with shadcn/ui Cards. Implement app/restaurant/[id]/page.tsx for details using dynamic routes. Create restaurant admin dashboard at app/admin/page.tsx with NextAuth protection. Use Server Components for data fetching with Suspense boundaries. Implement restaurant creation, editing, and management forms using shadcn/ui Form components with Server Actions.",
+        "testStrategy": "Test restaurant listing page load, dynamic routing, admin access control, restaurant CRUD operations, form validation and submission",
+        "priority": "medium",
+        "dependencies": [
+          3,
+          4
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Build restaurant listing page with pagination",
+            "description": "Create app/restaurants/page.tsx with shadcn/ui Cards, search, filtering, and pagination",
+            "dependencies": [],
+            "details": "Implement restaurant listing page using Next.js App Router Server Component. Use shadcn/ui Card components to display restaurant information including name, cuisine type, rating, and thumbnail image. Add search functionality by name and cuisine type. Implement pagination with shadcn/ui Pagination component. Use Suspense boundaries for loading states.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Implement dynamic restaurant detail pages",
+            "description": "Create app/restaurant/[id]/page.tsx with dynamic routing and detailed restaurant information",
+            "dependencies": [
+              "5.1"
+            ],
+            "details": "Build dynamic restaurant detail pages using Next.js App Router dynamic segments. Display comprehensive restaurant information including description, menu items, hours, contact info, and images. Use Server Components for data fetching with proper error handling for non-existent restaurants. Implement breadcrumb navigation back to listing.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Create restaurant admin dashboard with authentication",
+            "description": "Build app/admin/page.tsx with NextAuth protection and restaurant management interface",
+            "dependencies": [
+              "5.2"
+            ],
+            "details": "Create protected admin dashboard page using NextAuth middleware for role-based access control. Build restaurant management interface with shadcn/ui Table component showing all restaurants with actions. Implement restaurant owner access control to only manage their own restaurants. Add admin-only features for managing all restaurants.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Build restaurant CRUD forms with Server Actions",
+            "description": "Implement restaurant creation, editing, and deletion forms using shadcn/ui Form components",
+            "dependencies": [
+              "5.3"
+            ],
+            "details": "Create restaurant forms using shadcn/ui Form components with react-hook-form and zod validation. Implement Server Actions for create, update, and delete operations. Add form fields for name, description, cuisine type, address, phone, hours, and menu items. Include proper error handling and success feedback with shadcn/ui Toast components.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Add image upload and management for restaurant profiles",
+            "description": "Implement image upload functionality and management for restaurant profile images and galleries",
+            "dependencies": [
+              "5.4"
+            ],
+            "details": "Set up image upload using Next.js file handling or cloud storage integration. Create image management interface in admin forms with preview, crop, and delete functionality. Implement multiple image support for restaurant galleries. Add image optimization and responsive image display using Next.js Image component. Include validation for file types and sizes.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 6,
+        "title": "Build Menu Management System",
+        "description": "Create menu browsing, category management, and menu item functionality",
+        "details": "Implement menu display with shadcn/ui Tabs for categories. Create MenuItem components with shadcn/ui Dialog for item details. Build admin menu management at app/admin/menu/page.tsx with shadcn/ui Tables for CRUD operations. Implement menu item search using Next.js Server Components with debounced search input. Add filtering with shadcn/ui Select and Checkbox components for dietary restrictions and price ranges.",
+        "testStrategy": "Test menu category navigation, item detail modals, admin menu management, search functionality, filtering options",
+        "priority": "medium",
+        "dependencies": [
+          5
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Create Menu Display Components",
+            "description": "Build main menu display with category tabs and responsive layout using shadcn/ui components",
+            "dependencies": [],
+            "details": "Implement app/menu/page.tsx with shadcn/ui Tabs component for category navigation. Create responsive grid layout for menu items using shadcn/ui Card components. Set up proper TypeScript interfaces for menu data structure. Implement loading states with Skeleton components.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Implement MenuItem Detail Modal",
+            "description": "Create interactive menu item detail modal with shadcn/ui Dialog component",
+            "dependencies": [
+              "6.1"
+            ],
+            "details": "Build MenuItem component with shadcn/ui Dialog for item details display. Include item images, descriptions, price, dietary information, and customization options. Implement add-to-cart functionality within modal. Configure proper dialog animations and accessibility.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Build Admin Menu CRUD Interface",
+            "description": "Create comprehensive admin interface for menu management operations",
+            "dependencies": [
+              "6.1"
+            ],
+            "details": "Implement app/admin/menu/page.tsx with shadcn/ui DataTable for menu item listing. Create forms for adding/editing menu items using shadcn/ui Form components. Implement delete confirmation dialogs. Add bulk operations for category management. Configure proper validation and error handling.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Implement Menu Search Functionality",
+            "description": "Build debounced search system using Next.js Server Components",
+            "dependencies": [
+              "6.1"
+            ],
+            "details": "Create search input component with debounced functionality using Next.js Server Components. Implement server-side search logic for menu items across name, description, and ingredients. Add search result highlighting and empty state handling. Configure proper URL state management for search queries.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Create Menu Filtering System",
+            "description": "Implement comprehensive filtering options for dietary restrictions and price ranges",
+            "dependencies": [
+              "6.1",
+              "6.4"
+            ],
+            "details": "Build filter sidebar using shadcn/ui Select and Checkbox components for dietary restrictions (vegetarian, vegan, gluten-free, etc.). Implement price range slider with shadcn/ui Slider component. Create filter state management with URL synchronization. Add clear filters functionality and active filter indicators.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 6,
+            "title": "Integrate Category Management",
+            "description": "Implement dynamic category creation and management functionality",
+            "dependencies": [
+              "6.2",
+              "6.3"
+            ],
+            "details": "Create category CRUD operations in admin interface with shadcn/ui components. Implement category ordering and drag-and-drop functionality. Build category visibility toggles and menu item assignment. Configure proper category-menu item relationships and data validation.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 7,
+        "title": "Implement Shopping Cart with Zustand",
+        "description": "Create shopping cart functionality with state management and persistent storage",
+        "details": "Install Zustand 4.x for cart state management. Create cart store with add/remove/update item actions. Implement cart drawer using shadcn/ui Sheet component with cart summary. Add cart persistence using localStorage with SSR hydration handling. Create CartProvider and useCart hooks. Implement quantity controls, special instructions, and cart total calculations.",
+        "testStrategy": "Test cart operations (add/remove/update), cart persistence across page refreshes, cart drawer functionality, quantity controls, total calculations",
+        "priority": "medium",
+        "dependencies": [
+          6
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Install and configure Zustand for cart state management",
+            "description": "Set up Zustand 4.x store with TypeScript definitions for cart state",
+            "dependencies": [],
+            "details": "Install Zustand 4.x package. Create cart store type definitions including CartItem interface with product details, quantity, special instructions. Set up initial cart state structure with items array, total calculations, and loading states. Configure Zustand devtools for development debugging.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Create cart store with CRUD actions",
+            "description": "Implement add, remove, update, and clear cart item actions in Zustand store",
+            "dependencies": [
+              "7.1"
+            ],
+            "details": "Create addItem action with duplicate item handling and quantity merging. Implement removeItem and updateQuantity actions with validation. Add clearCart action for checkout completion. Include updateSpecialInstructions action. Implement cart total calculations including subtotal, tax, and delivery fees with proper currency formatting.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Implement cart persistence with localStorage and SSR hydration",
+            "description": "Add cart state persistence using localStorage with proper SSR handling",
+            "dependencies": [
+              "7.2"
+            ],
+            "details": "Create localStorage persistence middleware for Zustand store. Implement SSR-safe hydration logic to prevent hydration mismatches. Add cart state rehydration on app initialization with error handling for corrupted data. Include cart expiration logic and cleanup for stale data. Handle edge cases like localStorage unavailability or quota exceeded.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Create CartProvider and useCart hooks",
+            "description": "Build React context provider and custom hooks for cart access",
+            "dependencies": [
+              "7.3"
+            ],
+            "details": "Create CartProvider component wrapping the Zustand store with React context. Implement useCart hook for accessing cart state and actions. Add useCartCount hook for badge display. Create useCartTotal hook for checkout summaries. Include TypeScript interfaces and proper error boundaries for cart context failures.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Build cart drawer UI with shadcn/ui Sheet component",
+            "description": "Create responsive cart drawer with item display and controls",
+            "dependencies": [
+              "7.4"
+            ],
+            "details": "Implement cart drawer using shadcn/ui Sheet component with slide-out animation. Create CartItem component displaying product image, name, price, quantity controls with Plus/Minus buttons. Add special instructions text input. Include remove item button with confirmation. Display cart summary with subtotal, taxes, delivery fee, and total. Add empty cart state with continue shopping CTA.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 6,
+            "title": "Implement cart validation and error handling",
+            "description": "Add cart validation, inventory checks, and comprehensive error handling",
+            "dependencies": [
+              "7.5"
+            ],
+            "details": "Implement cart item validation including availability checks and price updates. Add inventory validation before checkout with real-time stock checking. Create error handling for network failures, invalid items, and store closures. Implement cart conflict resolution for concurrent updates. Add cart size limits and item quantity restrictions with user-friendly error messages.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 8,
+        "title": "Build Checkout and Payment System",
+        "description": "Create checkout flow with Stripe integration and order confirmation",
+        "details": "Install Stripe 14.x and create checkout forms with shadcn/ui Form validation using react-hook-form and zod. Implement app/checkout/page.tsx with delivery address forms. Create API routes for Stripe payment processing in app/api/payment/route.ts. Build order confirmation page with shadcn/ui Alert components. Implement Server Actions for order creation and payment processing with proper error handling.",
+        "testStrategy": "Test checkout form validation, Stripe payment flow, order creation, confirmation page display, error handling for failed payments",
+        "priority": "high",
+        "dependencies": [
+          7
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Install and Configure Stripe SDK",
+            "description": "Set up Stripe 14.x SDK with environment variables and configuration",
+            "dependencies": [],
+            "details": "Install @stripe/stripe-js and stripe packages. Configure STRIPE_PUBLIC_KEY and STRIPE_SECRET_KEY in environment variables. Set up Stripe client configuration with proper error handling and webhook endpoints.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Create Checkout Form with Address Validation",
+            "description": "Build delivery address form with react-hook-form and zod validation",
+            "dependencies": [
+              "8.1"
+            ],
+            "details": "Implement app/checkout/page.tsx with shadcn/ui Form components. Create address schema with zod validation for required fields (street, city, postal code). Integrate react-hook-form for form state management and validation.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Implement Payment Form Component",
+            "description": "Create Stripe payment form with card element integration",
+            "dependencies": [
+              "8.1"
+            ],
+            "details": "Build payment form component using Stripe Elements. Implement card input with proper styling to match shadcn/ui theme. Add payment method validation and secure tokenization before submission.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Build Payment Processing API Route",
+            "description": "Create Stripe payment intent API endpoint with security validation",
+            "dependencies": [
+              "8.1"
+            ],
+            "details": "Implement app/api/payment/route.ts with Stripe payment intent creation. Add request validation, amount verification, and secure payment processing. Include proper error handling for declined cards and API failures.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Implement Order Creation Server Action",
+            "description": "Create Server Action for order processing and database storage",
+            "dependencies": [
+              "8.2",
+              "8.4"
+            ],
+            "details": "Build Server Action to create orders in database after successful payment. Include inventory validation, cart clearing, and order confirmation email triggers. Implement proper transaction handling for data consistency.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 6,
+            "title": "Build Order Confirmation Page",
+            "description": "Create order confirmation page with success messaging",
+            "dependencies": [
+              "8.5"
+            ],
+            "details": "Implement order confirmation page using shadcn/ui Alert components. Display order summary, payment confirmation, estimated delivery time, and order tracking information. Include proper loading states and error boundaries.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 7,
+            "title": "Implement Comprehensive Error Handling",
+            "description": "Add error handling for payment failures and edge cases",
+            "dependencies": [
+              "8.3",
+              "8.4",
+              "8.5"
+            ],
+            "details": "Implement error handling for payment declined, network failures, inventory shortages, and API timeouts. Create user-friendly error messages with shadcn/ui Toast notifications. Add retry mechanisms for recoverable errors.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 8,
+            "title": "Add Payment Security and Validation",
+            "description": "Implement security measures and payment validation layers",
+            "dependencies": [
+              "8.4",
+              "8.5"
+            ],
+            "details": "Add CSRF protection, request rate limiting, and payment amount validation. Implement webhook handling for payment confirmations. Add security headers and input sanitization for all payment-related endpoints.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 9,
+        "title": "Create Order Management and History",
+        "description": "Implement order tracking, history, and management features",
+        "details": "Create app/orders/page.tsx for order history with shadcn/ui Cards and pagination. Implement app/orders/[id]/page.tsx for detailed order tracking. Build admin order management at app/admin/orders/page.tsx with real-time order list. Use Next.js Server Components with streaming for performance. Implement order status updates with shadcn/ui Select components and Server Actions.",
+        "testStrategy": "Test order history display, order detail pages, admin order management, status updates, pagination functionality",
+        "priority": "medium",
+        "dependencies": [
+          8
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Create Order History Page Component",
+            "description": "Build app/orders/page.tsx with order history listing and pagination",
+            "dependencies": [],
+            "details": "Create Server Component for order history display using shadcn/ui Cards. Implement pagination with Next.js searchParams. Use Suspense boundaries for loading states. Fetch user orders from database with proper filtering and sorting.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Implement Order Detail Page with Tracking",
+            "description": "Build app/orders/[id]/page.tsx for detailed order view and status tracking",
+            "dependencies": [
+              "9.1"
+            ],
+            "details": "Create dynamic route for individual order details. Display order items, delivery tracking, status timeline using shadcn/ui components. Implement real-time status updates with Server Components streaming.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Build Admin Order Management Dashboard",
+            "description": "Create app/admin/orders/page.tsx for restaurant owners to manage orders",
+            "dependencies": [
+              "9.1"
+            ],
+            "details": "Build admin interface with real-time order list using Server Components. Include order filtering, sorting, and search functionality. Implement order assignment and priority management features.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Implement Order Status Update System",
+            "description": "Create status update functionality with shadcn/ui Select and Server Actions",
+            "dependencies": [
+              "9.2",
+              "9.3"
+            ],
+            "details": "Build Server Actions for order status updates. Use shadcn/ui Select components for status transitions. Implement optimistic updates with revalidation. Add status change notifications and logging.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Implement Real-time Order Updates",
+            "description": "Add streaming updates and real-time synchronization for order changes",
+            "dependencies": [
+              "9.4"
+            ],
+            "details": "Implement Server Components streaming for real-time order updates. Use Next.js streaming patterns with Suspense. Add polling fallback for browsers without streaming support. Ensure proper error handling and retry logic.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 6,
+            "title": "Add Order Pagination and Filtering Logic",
+            "description": "Implement efficient pagination and filtering for order lists",
+            "dependencies": [
+              "9.1",
+              "9.3"
+            ],
+            "details": "Create pagination logic using Next.js searchParams and Server Components. Implement order filtering by status, date range, and customer. Add search functionality with debounced input. Optimize database queries for large order datasets.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 10,
+        "title": "Implement Real-time Features with WebSockets",
+        "description": "Add real-time order updates and delivery tracking with WebSocket integration",
+        "details": "Install ws library and create WebSocket server in separate Docker service. Implement real-time order status updates using custom hooks. Create useOrderTracking hook for live updates. Add shadcn/ui Progress components for delivery tracking. Implement push notifications using Next.js service worker with web-push library. Ensure WebSocket reconnection and error handling.",
+        "testStrategy": "Test real-time order updates, WebSocket connection stability, push notifications, progress tracking display, reconnection after network issues",
+        "priority": "medium",
+        "dependencies": [
+          9
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Set up WebSocket Server Docker Service",
+            "description": "Create Docker service for WebSocket server with proper networking configuration",
+            "dependencies": [],
+            "details": "Create Dockerfile for WebSocket server using Node.js. Install ws library and create basic WebSocket server. Configure docker-compose.yml to add websocket service with proper port mapping and network configuration. Ensure Docker networking allows communication between Next.js app and WebSocket server.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Implement WebSocket Server Core Functionality",
+            "description": "Build WebSocket server with connection management and message routing",
+            "dependencies": [
+              "10.1"
+            ],
+            "details": "Implement WebSocket server with connection pooling, user session management, and message routing. Add authentication middleware to verify JWT tokens. Create message handlers for order status updates and delivery tracking events. Implement heartbeat mechanism for connection health monitoring.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Create Custom React Hooks for Real-time Updates",
+            "description": "Build useOrderTracking and useWebSocket hooks for real-time functionality",
+            "dependencies": [
+              "10.2"
+            ],
+            "details": "Create useWebSocket hook with automatic reconnection logic and error handling. Implement useOrderTracking hook that subscribes to order status updates. Add connection state management (connecting, connected, disconnected, error). Include debouncing for rapid updates and cleanup on component unmount.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Integrate shadcn/ui Progress Components for Delivery Tracking",
+            "description": "Build delivery tracking UI with progress indicators and status updates",
+            "dependencies": [
+              "10.3"
+            ],
+            "details": "Install and configure shadcn/ui Progress component. Create delivery tracking UI showing order stages (confirmed, preparing, out for delivery, delivered). Implement progress bar with percentage completion. Add real-time status updates using useOrderTracking hook. Style with proper loading states and animations.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Implement Push Notifications with Service Worker",
+            "description": "Set up push notifications using Next.js service worker and web-push library",
+            "dependencies": [
+              "10.3"
+            ],
+            "details": "Install web-push library and configure VAPID keys. Create Next.js service worker for push notification handling. Implement notification subscription and unsubscription flow. Create API routes for sending push notifications. Add notification permission requests and fallback UI for unsupported browsers.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 6,
+            "title": "Implement WebSocket Connection Management and Error Handling",
+            "description": "Add robust connection management with reconnection and error recovery",
+            "dependencies": [
+              "10.4",
+              "10.5"
+            ],
+            "details": "Implement exponential backoff for WebSocket reconnection attempts. Add connection state persistence across page refreshes. Create error boundary components for WebSocket failures. Implement offline detection and queue messages for when connection is restored. Add logging and monitoring for connection issues.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 7,
+            "title": "Test and Validate Real-time Features",
+            "description": "Comprehensive testing of WebSocket functionality and real-time updates",
+            "dependencies": [
+              "10.6"
+            ],
+            "details": "Test real-time order status updates across multiple browser sessions. Verify WebSocket connection stability under network interruptions. Test push notification delivery and service worker functionality. Validate progress tracking accuracy and UI responsiveness. Test Docker service integration and container networking.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 11,
+        "title": "Configure Playwright MCP Testing Suite",
+        "description": "Set up comprehensive end-to-end testing with Playwright MCP integration in Docker environment",
+        "details": "Configure Playwright 1.40+ with MCP integration for containerized testing. Create test suites for user authentication, restaurant browsing, cart operations, checkout flow, and order tracking. Set up parallel test execution against Docker services. Implement visual regression testing and accessibility testing. Configure CI/CD pipeline integration with test reports.",
+        "testStrategy": "Run full test suite against Docker environment, verify test parallelization, validate visual regression detection, confirm accessibility compliance",
+        "priority": "medium",
+        "dependencies": [
+          10
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Install and Configure Playwright MCP Integration",
+            "description": "Install Playwright 1.40+ with MCP server integration and configure basic setup",
+            "dependencies": [],
+            "details": "Install @playwright/test 1.40+, configure playwright.config.ts with MCP integration settings, set up test directory structure, install MCP Playwright package, configure browser instances for testing",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Set Up Docker Test Environment",
+            "description": "Configure Docker environment for running Playwright tests against containerized services",
+            "dependencies": [
+              "11.1"
+            ],
+            "details": "Create docker-compose.test.yml for test environment, configure Docker networking for test access, set up test database containers, configure environment variables for test execution, ensure proper service isolation",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Create Authentication and User Flow Test Suite",
+            "description": "Implement comprehensive test coverage for user registration, login, and authentication flows",
+            "dependencies": [
+              "11.2"
+            ],
+            "details": "Create test files for user registration, login, logout, password reset flows. Test NextAuth.js integration, JWT token handling, session management, role-based access control, guest checkout sessions",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Develop Restaurant and Cart Operations Test Suite",
+            "description": "Build test coverage for restaurant browsing, menu interactions, and cart functionality",
+            "dependencies": [
+              "11.2"
+            ],
+            "details": "Create tests for restaurant listing, restaurant details, menu browsing, item selection, cart operations (add/remove/update), cart persistence, quantity management, price calculations",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Implement Checkout and Order Tracking Test Suite",
+            "description": "Create comprehensive tests for checkout process and order management",
+            "dependencies": [
+              "11.3",
+              "11.4"
+            ],
+            "details": "Test checkout flow, payment processing, order placement, order confirmation, order status updates, order history, order tracking, delivery status updates, payment verification",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 6,
+            "title": "Configure Visual Regression and Accessibility Testing",
+            "description": "Set up visual regression testing and accessibility compliance validation",
+            "dependencies": [
+              "11.2"
+            ],
+            "details": "Configure Playwright visual comparisons, set up screenshot baseline generation, implement accessibility testing with @axe-core/playwright, create accessibility test suite, configure visual diff reporting, set up test artifacts storage",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 7,
+            "title": "Set Up CI/CD Integration and Test Reporting",
+            "description": "Configure continuous integration pipeline with test execution and comprehensive reporting",
+            "dependencies": [
+              "11.5",
+              "11.6"
+            ],
+            "details": "Configure GitHub Actions/CI pipeline for test execution, set up parallel test execution, implement test result reporting with HTML reports, configure test artifact storage, set up test failure notifications, integrate with deployment pipeline",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 12,
+        "title": "Implement Search and Filtering System",
+        "description": "Build advanced search functionality for restaurants and menu items",
+        "details": "Create search functionality using Next.js Server Components with debounced input. Implement full-text search on restaurant names, cuisine types, and menu items using PostgreSQL's built-in search capabilities. Add filtering with shadcn/ui Select, Checkbox, and Slider components for price range, dietary restrictions, delivery time, and ratings. Use Suspense for loading states and URL state management with Next.js searchParams.",
+        "testStrategy": "Test search performance, filter combinations, URL state persistence, loading states, empty search results handling",
+        "priority": "low",
+        "dependencies": [
+          6
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Set up PostgreSQL full-text search infrastructure",
+            "description": "Configure database indexes and search functions for restaurant and menu item search",
+            "dependencies": [],
+            "details": "Create PostgreSQL GIN indexes on restaurant names, cuisine types, and menu item fields. Implement tsvector columns for full-text search. Add database migration for search indexes. Create search utility functions with proper ranking and relevance scoring.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Build search input component with debouncing",
+            "description": "Create reusable search input component with proper debouncing and loading states",
+            "dependencies": [],
+            "details": "Implement SearchInput component using shadcn/ui Input with debounced onChange handler. Add loading spinner and clear button functionality. Use useCallback and useMemo for performance optimization. Handle URL searchParams integration for search query persistence.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Implement server-side search API and Server Components",
+            "description": "Create search API endpoints and Server Components for search results",
+            "dependencies": [
+              "12.1"
+            ],
+            "details": "Build app/api/search/route.ts with PostgreSQL full-text search queries. Create SearchResults Server Component with Suspense boundaries. Implement search result ranking and pagination. Add proper error handling and empty state management.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Build filtering components and UI",
+            "description": "Create filtering components for price, dietary restrictions, delivery time, and ratings",
+            "dependencies": [
+              "12.2"
+            ],
+            "details": "Implement FilterPanel component using shadcn/ui Select, Checkbox, and Slider components. Create PriceRangeFilter, DietaryFilter, DeliveryTimeFilter, and RatingFilter components. Add filter state management with URL persistence. Implement clear filters functionality.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Integrate search and filters with URL state management",
+            "description": "Connect search and filtering system with Next.js URL state management and optimization",
+            "dependencies": [
+              "12.3",
+              "12.4"
+            ],
+            "details": "Implement useSearchParams hooks for URL state synchronization. Add search result optimization with proper caching strategies. Create SearchPage component combining search input, filters, and results. Implement search analytics and performance monitoring.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 13,
+        "title": "Performance Optimization and Production Setup",
+        "description": "Optimize application performance and configure production deployment with monitoring",
+        "details": "Implement Next.js Image optimization for menu item photos. Set up Redis caching for restaurant and menu data with cache invalidation strategies. Configure Next.js bundle analyzer and optimize bundle size. Set up production Docker builds with multi-stage optimization. Implement error monitoring with Sentry integration. Configure logging with structured logging format. Set up health check endpoints and monitoring dashboards.",
+        "testStrategy": "Run performance audits with Lighthouse, test cache invalidation, verify production Docker builds, monitor error rates and response times",
+        "priority": "medium",
+        "dependencies": [
+          11
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Implement Next.js Image Optimization",
+            "description": "Configure Next.js Image component optimization for menu item photos with proper sizing and lazy loading",
+            "dependencies": [],
+            "details": "Set up Next.js Image component with optimized configurations for menu photos. Configure image domains, sizes, and formats. Implement lazy loading and blur placeholders. Set up image compression and WebP/AVIF format support.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Set up Redis Caching Infrastructure",
+            "description": "Configure Redis server and implement caching layer for restaurant and menu data",
+            "dependencies": [],
+            "details": "Install and configure Redis in Docker environment. Set up Redis client with connection pooling. Implement cache keys strategy for restaurants, menus, and categories. Configure cache TTL and memory limits.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Implement Cache Invalidation Strategies",
+            "description": "Create intelligent cache invalidation system for data consistency",
+            "dependencies": [
+              "13.2"
+            ],
+            "details": "Implement cache invalidation on data updates. Set up cache tags and dependency tracking. Create cache warming strategies. Implement cache-aside pattern with fallback to database.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Configure Bundle Analysis and Optimization",
+            "description": "Set up Next.js bundle analyzer and optimize application bundle size",
+            "dependencies": [],
+            "details": "Install @next/bundle-analyzer and configure analysis scripts. Identify large dependencies and optimize imports. Implement dynamic imports for code splitting. Optimize third-party library usage and tree shaking.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Create Production Docker Build Configuration",
+            "description": "Set up multi-stage Docker builds optimized for production deployment",
+            "dependencies": [],
+            "details": "Create production Dockerfile with multi-stage builds. Optimize image layers and reduce final image size. Configure production environment variables. Set up Docker Compose for production stack with Redis and PostgreSQL.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 6,
+            "title": "Implement Error Monitoring with Sentry",
+            "description": "Configure Sentry integration for error tracking and performance monitoring",
+            "dependencies": [],
+            "details": "Install and configure Sentry SDK for Next.js. Set up error boundaries and error reporting. Configure performance monitoring and transaction tracking. Implement custom error contexts and user feedback.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 7,
+            "title": "Configure Structured Logging System",
+            "description": "Set up comprehensive logging with structured format for production debugging",
+            "dependencies": [],
+            "details": "Install logging library (winston/pino) with structured JSON format. Configure log levels and rotation. Set up request/response logging middleware. Implement correlation IDs for request tracking.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 8,
+            "title": "Set up Health Checks and Monitoring Dashboards",
+            "description": "Create health check endpoints and configure monitoring dashboards for production",
+            "dependencies": [
+              "13.2",
+              "13.6",
+              "13.7"
+            ],
+            "details": "Implement /health endpoint with database and Redis connectivity checks. Set up monitoring dashboards with key metrics. Configure alerting for critical failures. Implement readiness and liveness probes for container orchestration.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      }
+    ],
+    "metadata": {
+      "created": "2025-09-02T07:10:40.007Z",
+      "updated": "2025-09-02T07:10:40.007Z",
+      "description": "Tasks for master context"
+    }
+  }
+}

@@ -1,0 +1,136 @@
+# Product Requirements Document: Next.js Food Ordering App
+
+## Overview
+A modern full-stack web application built with Next.js that allows customers to browse restaurant menus, place orders, and track delivery status. Features a beautiful UI with shadcn/ui components and Tailwind CSS styling, optimized for both mobile and desktop experiences. Development follows a Docker-first approach with production-like containerized environment from day one, with comprehensive Playwright MCP testing integration.
+
+## Development Approach
+
+### Docker-First Development Environment
+- All development happens in Docker containers matching production environment
+- Docker Compose orchestrates all services (Next.js, PostgreSQL, Redis, nginx)
+- Playwright MCP integration for containerized testing and debugging
+- Environment parity between development, staging, and production
+- Easy team onboarding with single docker-compose up command
+
+## Core Features
+
+### 1. Next.js Authentication System
+- NextAuth.js for secure authentication with multiple providers
+- Email/password registration and login with credential provider
+- Guest checkout using Next.js session management
+- Password reset functionality with email verification
+- User profile management with Server Actions
+- Role-based access control for customers and restaurant owners
+
+### 2. Restaurant & Menu Management (Next.js App Router)
+- Restaurant listing page with shadcn/ui Card components
+- Dynamic routes for restaurant details (/restaurant/[id])
+- Menu browsing with shadcn/ui Tabs for categories
+- MenuItem components with shadcn/ui Dialog for details
+- Search functionality using Next.js Server Components and Suspense
+- Filtering with shadcn/ui Select and Checkbox components
+
+### 3. Order Management (Full-stack Next.js)
+- Shopping cart using Zustand state management
+- Cart drawer with shadcn/ui Sheet component
+- Order customization forms with shadcn/ui Form components
+- Stripe integration using Next.js API routes
+- Order confirmation pages with shadcn/ui Alert components
+- Order history with Next.js data fetching and caching
+
+### 4. Real-time Delivery Tracking
+- WebSocket integration for live order updates
+- Order status tracking with shadcn/ui Progress components
+- Push notifications using Next.js service worker
+- Real-time status updates without page refresh
+
+### 5. Next.js Infrastructure
+- App Router with nested layouts and loading states
+- Server Components for performance optimization
+- API Routes for backend functionality
+- Prisma ORM with PostgreSQL database
+- Tailwind CSS for responsive design
+- shadcn/ui component library for consistent UI
+
+## User Stories
+
+### Customer Flow (Next.js Pages)
+1. User visits homepage (/) with restaurant grid using shadcn/ui Cards
+2. User selects restaurant (/restaurant/[id]) with menu display
+3. User adds items to cart with shadcn/ui Dialog modals
+4. User proceeds to checkout (/checkout) with NextAuth integration
+5. User enters delivery info with shadcn/ui Form validation
+6. User places order with Stripe payment via API routes
+7. User tracks order (/orders/[id]) with real-time WebSocket updates
+
+### Restaurant Owner Flow (Admin Dashboard)
+1. Owner logs into admin dashboard (/admin) with NextAuth
+2. Owner manages menu via (/admin/menu) with shadcn/ui Tables
+3. Owner receives orders in (/admin/orders) with real-time updates
+4. Owner updates order status with shadcn/ui Select components
+5. Owner views analytics in (/admin/analytics) with Chart.js integration
+
+## Technical Requirements
+
+### Docker Infrastructure (MUST BE FIRST)
+- Docker Compose setup with all services before any development begins
+- Multi-stage Dockerfile for Next.js with development and production builds
+- PostgreSQL, Redis, nginx services in containers
+- Volume mounts for hot reload and data persistence
+- Health checks and service dependencies
+- Playwright tests run against containerized environment
+
+### Next.js Stack
+- Next.js 14+ with App Router
+- TypeScript for type safety
+- Tailwind CSS for styling
+- shadcn/ui for UI components
+- NextAuth.js for authentication
+- Prisma ORM for database management
+- Zustand for client-side state management
+
+### Database & Backend
+- PostgreSQL with Prisma schema
+- Next.js API Routes for backend logic
+- Server Actions for form handling
+- Stripe API integration for payments
+- Resend or NodeMailer for email notifications
+- WebSocket server for real-time features
+
+### UI Components & Styling
+- shadcn/ui components (Button, Card, Dialog, Form, etc.)
+- Tailwind CSS utility classes
+- Responsive design with mobile-first approach
+- Dark mode support with next-themes
+- Loading states and error boundaries
+- Optimistic UI updates
+
+### Data Models (Prisma Schema)
+- User (NextAuth compatible schema)
+- Restaurant (name, address, cuisine_type, operating_hours)
+- Category (name, restaurant_id)
+- MenuItem (name, price, description, category_id, image_url)
+- Order (user_id, restaurant_id, status, total, delivery_address)
+- OrderItem (order_id, menu_item_id, quantity, special_instructions)
+- Payment (order_id, stripe_payment_id, amount, status)
+
+## Success Metrics
+- Order completion rate > 85%
+- Average order time < 3 minutes
+- Customer satisfaction score > 4.0/5.0
+- App load time < 2 seconds on mobile
+
+## Phase 1 MVP Scope
+- Basic restaurant/menu browsing
+- Simple cart and checkout flow
+- Order placement and confirmation
+- Basic order status tracking
+- Email notifications
+
+## Out of Scope (Future Phases)
+- Advanced delivery tracking with GPS
+- In-app messaging with delivery drivers
+- Restaurant analytics dashboard
+- Loyalty programs and promotions
+- Multi-restaurant orders
+- Advanced search filters and recommendations
