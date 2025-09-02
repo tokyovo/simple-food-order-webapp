@@ -16,7 +16,7 @@ This directory contains Docker configuration files for the food order webapp dev
 
 3. Access the application:
    - App: http://localhost:3000
-   - Database Admin: http://localhost:8080
+   - Database Admin: http://localhost:8081
    - API Health Check: http://localhost:3000/api/health
 
 ## Services
@@ -44,7 +44,7 @@ This directory contains Docker configuration files for the food order webapp dev
 - **Configuration**: `nginx.conf`
 
 ### Adminer (Database Management)
-- **Port**: 8080
+- **Port**: 8081
 - **Access**: Connect to `postgres` server with database credentials
 
 ## Development Workflow

@@ -6,7 +6,7 @@ WORKDIR /app
 
 # Install dependencies first for better layer caching
 COPY package*.json ./
-RUN npm ci --only=development
+RUN npm install
 
 # Copy source code
 COPY . .
@@ -32,8 +32,8 @@ WORKDIR /app
 # Copy package files
 COPY package*.json ./
 
-# Install dependencies
-RUN npm ci --only=production && npm cache clean --force
+# Install production dependencies only
+RUN npm install --production && npm cache clean --force
 
 # Build stage
 FROM node:18-alpine AS builder
@@ -43,7 +43,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install all dependencies including dev dependencies
-RUN npm ci
+RUN npm install
 
 # Copy source code
 COPY . .

@@ -17,10 +17,12 @@ services:
   postgres:
     environment:
       - POSTGRES_DB=foodorder_dev
+    # Expose for local development tools if needed
     ports:
       - "5432:5432"
 
   redis:
+    # Expose for local development tools if needed  
     ports:
       - "6379:6379"
 
