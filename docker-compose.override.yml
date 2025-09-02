@@ -1,0 +1,29 @@
+# Development overrides for docker-compose.yml
+version: '3.8'
+
+services:
+  app:
+    build:
+      target: development
+    environment:
+      - NODE_ENV=development
+      - DEBUG=true
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.next
+    command: npm run dev
+
+  postgres:
+    environment:
+      - POSTGRES_DB=foodorder_dev
+    ports:
+      - "5432:5432"
+
+  redis:
+    ports:
+      - "6379:6379"
+
+  nginx:
+    ports:
+      - "80:80"
